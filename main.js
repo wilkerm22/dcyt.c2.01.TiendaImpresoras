@@ -18,10 +18,10 @@ porc=
 
 class Cl_Impresoras
 {
-  constructor(tImpresora)
-  {
+ constructor(tImpresora)
+{
     this.tImpresora=tImpresora;
-  }
+}
 }
 
 class Cl_ImpCartuchos extends Cl_Impresoras
@@ -78,7 +78,7 @@ let Imp1 = new Cl_ImpCartuchos("Cartuchos", 2)
 let Imp2 = new Cl_ImpLaser ("Laser",1);
 let Imp3 = new Cl_ImpLaser ("Cartuchos", 1);
 let Imp4 = new Cl_ImpLaser ("Laser", 5);
-let Imp5 = new Cl_ImpLaser ("Laser", 10);
+let Imp5 = new Cl_ImpLaser ("Laser", 11);
 
 let tie = new Cl_Tienda()
 tie.procesarImpresoras(Imp1)
