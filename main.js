@@ -75,8 +75,8 @@ PorcImpLaser()
 }
 
 let Imp1 = new Cl_ImpCartuchos("Cartuchos", 2)
-let Imp2 = new Cl_ImpLaser ("Laser",1);
-let Imp3 = new Cl_ImpLaser ("Cartuchos", 1);
+let Imp2 = new Cl_ImpLaser ("Laser", 1);
+let Imp3 = new Cl_ImpCartuchos ("Cartuchos", 1);
 let Imp4 = new Cl_ImpLaser ("Laser", 5);
 let Imp5 = new Cl_ImpLaser ("Laser", 11);
 
