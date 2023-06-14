@@ -13,12 +13,11 @@ Imp 3 Cartuchos 1 = 20
 Imp 4 Laser 5 = 150
 Imp 5 Laser 10 = 300       
 
-porc= 
-*/
+porc= 3/5*100= 60 */
 
 class Cl_Impresoras
 {
- constructor(tImpresora)
+constructor(tImpresora)
 {
     this.tImpresora=tImpresora;
 }
@@ -34,7 +33,7 @@ this.cCartucho = cCartucho
 
 tpagar()
 {
-    return this.cCartucho === 1 ? 20 : 25;
+    return this.cCartucho == 1 ? 20 : 25;
 }
 }
 
@@ -58,12 +57,14 @@ constructor()
 {
     this.contImpresoras=0;
     this.contImpLaser=0;
+    this.acumtotal = 0;
 }
 
 procesarImpresoras (i)
 {
     this.contImpresoras++;
-    if (i.tImpresora === "Laser")
+    this.acumtotal+= i.tpagar();
+    if (i.tImpresora === "Laser" || i.tImpresora ==="laser")
     {
     this.contImpLaser++;
     }
@@ -72,28 +73,55 @@ PorcImpLaser()
 {
     return Number((this.contImpLaser / this.contImpresoras * 100).toFixed(2));
 }
+totalGanado()
+{
+    return this.acumtotal;
+}
 }
 
-let Imp1 = new Cl_ImpCartuchos("Cartuchos", 2)
-let Imp2 = new Cl_ImpLaser ("Laser", 1);
-let Imp3 = new Cl_ImpCartuchos ("Cartuchos", 1);
-let Imp4 = new Cl_ImpLaser ("Laser", 5);
-let Imp5 = new Cl_ImpLaser ("Laser", 11);
+const salida = document.getElementById("app");
+const tie = new Cl_Tienda()
+const formulario = document.querySelector("#F1")
+formulario.addEventListener("submit",recarga)
 
-let tie = new Cl_Tienda()
-tie.procesarImpresoras(Imp1)
-tie.procesarImpresoras(Imp2)
-tie.procesarImpresoras(Imp3)
-tie.procesarImpresoras(Imp4)
-tie.procesarImpresoras(Imp5)
+function recarga()
+{
+event.preventDefault();
+const tImpresora=document.getElementById("tImpresora").value
+const cCartucho=document.getElementById("cCartucho").value
+const cantToner=document.getElementById("cantToner").value
 
-let salida = document.getElementById("app");
+let imp;
+
+if (tImpresora === "") {
+    alert("Ingrese los valores necesarios para procesar la impresora.");
+    return;
+  }
+if((tImpresora === "Cartucho" || tImpresora === "cartucho") && cCartucho === "")
+{
+    alert("Introduzca el color del cartucho y deje la cantidad de toner en blanco")
+    return;
+}
+if(tImpresora === "Laser" | tImpresora === "laser" && cantToner === "")
+{
+    alert("Introduzca la cantidad de toner y deje el color del cartucho en blanco:")
+    return;
+}
+
+
+
+if(cCartucho !== "")
+{
+    imp = new Cl_ImpCartuchos(tImpresora,cCartucho)
+}else{ imp= new Cl_ImpLaser(tImpresora,cantToner)}
+
+tie.procesarImpresoras(imp)
+
 salida.innerHTML = "<b>RESULTADOS"
-salida.innerHTML += `<br>El precio a pagar por la impresora 1 es: ${Imp1.tpagar()}`
-salida.innerHTML += `<br>El precio a pagar por la impresora 2 es: ${Imp2.tpagar()}`
-salida.innerHTML += `<br>El precio a pagar por la impresora 3 es: ${Imp3.tpagar()}`
-salida.innerHTML += `<br>El precio a pagar por la impresora 4 es: ${Imp4.tpagar()}`
-salida.innerHTML += `<br>El precio a pagar por la impresora 5 es: ${Imp5.tpagar()}`
+salida.innerHTML += `<br>El precio a pagar por la impresora es: ${imp.tpagar()}`
 salida.innerHTML += `<br>El Total de impresoras recargadas fue: ${tie.contImpresoras}`
 salida.innerHTML += `<br>El Porcentaje de impresoras a laser es: ${tie.PorcImpLaser()}`
+salida.innerHTML += `<br>El total ganado es: ${tie.totalGanado()}`;
+formulario.reset();
+}
 
