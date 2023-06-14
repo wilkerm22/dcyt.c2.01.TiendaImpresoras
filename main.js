@@ -96,19 +96,17 @@ let imp;
 if (tImpresora === "") {
     alert("Ingrese los valores necesarios para procesar la impresora.");
     return;
-  }
-if((tImpresora === "Cartucho" || tImpresora === "cartucho") && cCartucho === "")
+}
+if((tImpresora === "Cartucho" || tImpresora === "cartucho") && (cCartucho === "" || cantToner !==""))
 {
     alert("Introduzca el color del cartucho y deje la cantidad de toner en blanco")
     return;
 }
-if(tImpresora === "Laser" | tImpresora === "laser" && cantToner === "")
+if(tImpresora === "Laser" || tImpresora === "laser" && (cantToner === "" || cCartucho !==""))
 {
     alert("Introduzca la cantidad de toner y deje el color del cartucho en blanco:")
     return;
 }
-
-
 
 if(cCartucho !== "")
 {
