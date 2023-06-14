@@ -94,7 +94,7 @@ const cantToner=document.getElementById("cantToner").value
 let imp;
 
 if (tImpresora === "") {
-    alert("Ingrese los valores necesarios para procesar la impresora.");
+    alert("Ingrese el tipo de impresora");
     return;
 }
 if((tImpresora === "Cartucho" || tImpresora === "cartucho") && (cCartucho === "" || cantToner !==""))
